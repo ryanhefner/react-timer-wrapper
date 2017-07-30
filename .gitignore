@@ -1,0 +1,10 @@
+.DS_Store
+es
+node_modules
+umd
+/*.js
+npm-debug.log
+yarn-error.log
+*.sublime-project
+*.sublime-workspace
+!rollup.config.js
