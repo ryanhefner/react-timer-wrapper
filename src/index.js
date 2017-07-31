@@ -41,7 +41,7 @@ class TimerWrapper extends Component {
 
       switch (active) {
         case true:
-          const nextTime = duration !== null && this.state.time === duration
+          const nextTime = duration !== null && this.state.time >= duration
             ? 0
             : this.state.time;
 
@@ -107,34 +107,33 @@ class TimerWrapper extends Component {
       time: nextTime,
     });
 
-    if (duration !== null && progress === 1) {
+    this.setState({
+      time: nextTime,
+    });
+
+    if (duration !== null && this.state.time >= duration) {
       onFinish({
         duration,
         progress,
         time: nextTime,
       });
 
-      if (loop) {
-        nextTime = 0;
-        onStart({
-          duration,
-          progress: 0,
-          time: nextTime,
-        });
-
-        this.setState({
-          startTime: Date.now(),
-        });
-      }
-      else {
+      if (!loop) {
         cancelAnimationFrame(this.animationFrame);
         return;
       }
-    }
 
-    this.setState({
-      time: nextTime,
-    });
+      nextTime = 0;
+      onStart({
+        duration,
+        progress: 0,
+        time: nextTime,
+      });
+
+      this.setState({
+        startTime: Date.now(),
+      });
+    }
 
     this.animationFrame = requestAnimationFrame(this.tick);
   }
