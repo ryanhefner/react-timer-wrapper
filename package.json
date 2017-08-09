@@ -1,6 +1,6 @@
 {
   "name": "react-timer-wrapper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "description": "Composable React Timer component that passes its status to its children.",
   "repository": "ryanhefner/react-timer-wrapper",
@@ -30,7 +30,7 @@
     "react": ">=15"
   },
   "dependencies": {
-    "clean-react-props": "^0.1.0",
+    "clean-react-props": "^0.1.1",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
