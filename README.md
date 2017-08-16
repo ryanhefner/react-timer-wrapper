@@ -6,13 +6,15 @@ time while active.
 
 ## Install
 
-Via [npm](https://npmjs.com/package/react-timer-wrapper):
-```
+Via [npm](https://npmjs.com/package/react-timer-wrapper)
+
+```sh
 npm install --save react-timer-wrapper
 ```
 
-Via [Yarn](https://yarn.fyi/react-timer-wrapper):
-```
+Via [Yarn](https://yarn.fyi/react-timer-wrapper)
+
+```sh
 yarn add react-timer-wrapper
 ```
 
@@ -41,7 +43,7 @@ completion. Or, you can use it to track the time that occurs while it’s active
 
 #### Standalone
 
-```
+```js
 import Timer from 'react-timer-wrapper';
 
 ...
@@ -84,7 +86,7 @@ import Timer from 'react-timer-wrapper';
 
 #### With children
 
-```
+```js
 import Timer from 'react-timer-wrapper';
 import CircleIndicator from 'react-indicators';
 

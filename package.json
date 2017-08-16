@@ -8,6 +8,7 @@
   "files": [
     "index.js",
     "es",
+    "src",
     "umd"
   ],
   "directories": {
