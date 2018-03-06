@@ -31,6 +31,7 @@ completion. Or, you can use it to track the time that occurs while it’s active
 ### Properties
 
 * `active:Boolean` - Start/stop the timer. (Default: `false`)
+* `component:String | Element` - Element or React component used to render/wrap the children. (Default: `div`)
 * `duration:Number` - Enables countdown mode and is the number of milliseconds to count before firing `onFinish`. (Default: `10000`)
 * `loop:Boolean` - Enable looping of the countdown timer. (Default: `false`)
 * `time:Number` - Either used as a time offset for the duration when used as a countdown timer, or the initial time to start from when used for tracking time. (Default: `0`)
@@ -125,4 +126,4 @@ to communicate the status of the timer.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © [Ryan Hefner](https://www.ryanhefner.com)
