@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cleanProps from 'clean-react-props';
 
@@ -141,6 +141,7 @@ class TimerWrapper extends Component {
   render() {
     const {
       children,
+      component,
       duration,
     } = this.props;
 
@@ -160,16 +161,20 @@ class TimerWrapper extends Component {
       });
     });
 
-    return (
-      <div {...cleanProps(this.props)}>
-        {clonedChildren}
-      </div>
+    return React.createElement(component, {
+        ...cleanProps(this.props),
+      },
+      clonedChildren
     );
   }
 }
 
 TimerWrapper.propTypes = {
   active: PropTypes.bool,
+  component: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
   duration: PropTypes.number,
   loop: PropTypes.bool,
   time: PropTypes.number,
@@ -180,6 +185,7 @@ TimerWrapper.propTypes = {
 
 TimerWrapper.defaultProps = {
   active: false,
+  component: 'div',
   duration: 10000,
   loop: false,
   time: 0,
