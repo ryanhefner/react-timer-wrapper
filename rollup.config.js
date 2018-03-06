@@ -6,9 +6,17 @@ import uglify from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
 const config = {
-  entry: 'src/index.js',
-  moduleName: 'react-timer-wrapper',
-  exports: 'named',
+  input: 'src/index.js',
+  output: {
+    name: 'react-timer-wrapper',
+    exports: 'named',
+    file: './index.js',
+    globals: {
+      'react': 'React',
+    },
+    banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
+    footer: '/* follow me on Twitter! @ryanhefner */',
+  },
   plugins: [
     babel({
       exclude: 'node_modules/**',
@@ -22,12 +30,6 @@ const config = {
   external: [
     'react',
   ],
-  globals: {
-    'react': 'React',
-  },
-  dest: './index.js',
-  banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
-  footer: '/* follow me on Twitter! @ryanhefner */',
 };
 
 if (process.env.NODE_ENV === 'production') {
