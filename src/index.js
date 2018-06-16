@@ -8,7 +8,7 @@ class TimerWrapper extends Component {
 
     this.state = {
       duration: props.duration,
-      startTime: props.active ? Date.now() : null,
+      startTime: props.active ? Date.now() - props.time : null,
       time: props.time,
     };
 
@@ -16,7 +16,26 @@ class TimerWrapper extends Component {
   }
 
   componentDidMount() {
-    if (this.props.active) {
+    const {
+      duration,
+      startTime,
+      time,
+    } = this.state;
+
+    const {
+      active,
+      onStart,
+    } = this.props;
+
+    if (active) {
+      const progress = Math.max(0, Math.min(1, time / duration));
+
+      onStart({
+        duration,
+        progress: this.getProgress(time),
+        time,
+      });
+
       this.animationFrame = requestAnimationFrame(this.tick);
     }
   }
@@ -37,8 +56,6 @@ class TimerWrapper extends Component {
     }
 
     if (active !== this.props.active) {
-      let progress;
-
       switch (active) {
         case true:
           const nextTime = duration !== null && this.state.time >= duration
@@ -50,13 +67,9 @@ class TimerWrapper extends Component {
             time: nextTime,
           });
 
-          progress = duration !== null
-            ? Math.max(0, Math.min(1, nextTime / duration))
-            : null;
-
           onStart({
             duration,
-            progress,
+            progress: this.getProgress(nextTime),
             time: nextTime,
           });
 
@@ -66,10 +79,9 @@ class TimerWrapper extends Component {
         case false:
           cancelAnimationFrame(this.animationFrame);
 
-          progress = Math.max(0, Math.min(1, this.state.time / duration));
           onStop({
             duration,
-            progress,
+            progress: this.getProgress(this.state.time),
             time: this.state.time,
           });
           break;
@@ -79,6 +91,18 @@ class TimerWrapper extends Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.animationFrame);
+  }
+
+  getProgress(time) {
+    const {
+      duration,
+    } = this.state;
+
+    if (!duration) {
+      return null;
+    }
+
+    return Math.max(0, Math.min(1, time / duration));
   }
 
   tick() {
@@ -95,47 +119,43 @@ class TimerWrapper extends Component {
       startTime,
     } = this.state;
 
-
-    const diff = Date.now() - startTime;
-    let nextTime = this.props.time + diff;
-
-    const progress = Math.max(0, Math.min(1, (nextTime / duration)));
+    let nextTime = Date.now() - startTime;
 
     onTimeUpdate({
       duration,
-      progress,
+      progress: this.getProgress(nextTime),
       time: nextTime,
     });
 
     this.setState({
       time: nextTime,
-    });
+    }, () => {
+      if (duration !== null && nextTime >= duration) {
+        onFinish({
+          duration,
+          progress: this.getProgress(nextTime),
+          time: nextTime,
+        });
 
-    if (duration !== null && this.state.time >= duration) {
-      onFinish({
-        duration,
-        progress,
-        time: nextTime,
-      });
+        if (!loop) {
+          cancelAnimationFrame(this.animationFrame);
+          return;
+        }
 
-      if (!loop) {
-        cancelAnimationFrame(this.animationFrame);
-        return;
+        nextTime = 0;
+        onStart({
+          duration,
+          progress: 0,
+          time: nextTime,
+        });
+
+        this.setState({
+          startTime: Date.now(),
+        });
       }
 
-      nextTime = 0;
-      onStart({
-        duration,
-        progress: 0,
-        time: nextTime,
-      });
-
-      this.setState({
-        startTime: Date.now(),
-      });
-    }
-
-    this.animationFrame = requestAnimationFrame(this.tick);
+      this.animationFrame = requestAnimationFrame(this.tick);
+    });
   }
 
   render() {
@@ -172,7 +192,7 @@ class TimerWrapper extends Component {
 TimerWrapper.propTypes = {
   active: PropTypes.bool,
   component: PropTypes.oneOfType([
-    PropTypes.element,
+    PropTypes.func,
     PropTypes.string,
   ]),
   duration: PropTypes.number,
