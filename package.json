@@ -5,6 +5,16 @@
   "description": "Composable React Timer component that passes its status to its children.",
   "repository": "ryanhefner/react-timer-wrapper",
   "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
+  "keywords": [
+    "react",
+    "react-component",
+    "timer",
+    "countdown",
+    "react-timer",
+    "react-timer-wrapper",
+    "react-timecode",
+    "react-indicators"
+  ],
   "files": [
     "index.js",
     "es",
@@ -21,38 +31,62 @@
     "clean": "rm -f index.js && rm -fr es && rm -fr umd",
     "prebuild": "npm run clean",
     "build": "node ./tools/build.js",
-    "watch": "babel ./src -d . --ignore __tests__ --watch",
+    "watch": "babel ./src -d . --ignore __tests__,*.test.js --watch",
     "prepare": "npm run build",
     "prepublishOnly": "node ./tools/build.js",
     "push-release": "git push origin master && git push --tags",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "peerDependencies": {
     "react": ">=15"
   },
   "dependencies": {
-    "clean-react-props": "^0.1.3",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^23.0.1",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
-    "babel-preset-latest": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "clean-react-props": "^0.2.1",
+    "coveralls": "^3.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "gzip-size": "^4.1.0",
-    "jest": "^22.4.2",
-    "pretty-bytes": "^4.0.2",
-    "react": "^16.2.0",
+    "jest": "^23.1.0",
+    "jest-enzyme": "^6.0.1",
+    "jsdom": "^11.11.0",
+    "lolex": "^2.7.0",
+    "pretty-bytes": "^5.1.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.4.1",
+    "react-test-renderer": "^16.3.1",
+    "react-timecode": "^1.1.3",
+    "regenerator-runtime": "^0.11.1",
     "rimraf": "^2.6.1",
-    "rollup": "^0.56.4",
+    "rollup": "^0.60.7",
     "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^9.0.0",
-    "rollup-plugin-json": "^2.3.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-uglify": "^3.0.0",
-    "rollup-watch": "^4.3.1"
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-json": "^3.0.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^4.0.0",
+    "rollup-watch": "^4.3.1",
+    "sinon": "^6.0.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/tools/jest-setup.js"
+    ],
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
   }
 }
