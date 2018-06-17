@@ -49,10 +49,14 @@ class TimerWrapper extends Component {
       onStop,
     } = nextProps;
 
-    if (time !== this.props.time) {
+    if (active === this.props.active && time !== this.state.time) {
+      const timeDiff = this.state.time - time;
+
       this.setState({
-        time,
+        startTime: this.state.startTime + timeDiff,
+        time: this.state.time + timeDiff,
       });
+      return;
     }
 
     if (active !== this.props.active) {
@@ -65,15 +69,15 @@ class TimerWrapper extends Component {
           this.setState({
             startTime: Date.now() - nextTime,
             time: nextTime,
-          });
+          }, () => {
+            onStart({
+              duration,
+              progress: this.getProgress(nextTime),
+              time: nextTime,
+            });
 
-          onStart({
-            duration,
-            progress: this.getProgress(nextTime),
-            time: nextTime,
+            this.animationFrame = requestAnimationFrame(this.tick);
           });
-
-          this.animationFrame = requestAnimationFrame(this.tick);
           break;
 
         case false:

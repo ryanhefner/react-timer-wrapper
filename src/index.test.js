@@ -197,6 +197,22 @@ describe('<Timer />', () => {
     component.unmount();
   });
 
+  test('onStop - called', () => {
+    expect.assertions(2);
+
+    const onStop = jest.fn();
+
+    component = mount(<Timer active onStop={onStop} />, {
+      attachTo: document.getElementById('root'),
+    });
+
+    expect(onStop).not.toBeCalled();
+    component.setProps({ active: false });
+    expect(onStop).toBeCalled();
+
+    component.unmount();
+  });
+
   test('time offset supported - onStart', () => {
     const onStart = jest.fn();
 
@@ -248,18 +264,117 @@ describe('<Timer />', () => {
     component.unmount();
   });
 
-  test('onStop - called', () => {
+  test('time prop changed', () => {
     expect.assertions(2);
+    const onTimeUpdate = jest.fn();
 
-    const onStop = jest.fn();
-
-    component = mount(<Timer active onStop={onStop} />, {
+    component = mount(<Timer active onTimeUpdate={onTimeUpdate} />, {
       attachTo: document.getElementById('root'),
     });
 
-    expect(onStop).not.toBeCalled();
+    clock.tick(16);
+    expect(onTimeUpdate).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0.0016,
+      time: 16,
+    });
+    component.setProps({ time: 5000 });
+    clock.tick(16);
+    expect(onTimeUpdate).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0.5016,
+      time: 5016,
+    });
+
+    component.unmount();
+  });
+
+  test('active prop changed - after timer complete', () => {
+    expect.assertions(4);
+
+    const onStart = jest.fn();
+    const onStop = jest.fn();
+    const onTimeUpdate = jest.fn();
+
+    component = mount((
+      <Timer
+        active
+        onStart={onStart}
+        onStop={onStop}
+        onTimeUpdate={onTimeUpdate}
+      />
+    ), {
+      attachTo: document.getElementById('root'),
+    });
+
+    expect(onStart).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0,
+      time: 0,
+    });
+    clock.tick(10000);
+    expect(onTimeUpdate).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 1,
+      time: 10000,
+    });
     component.setProps({ active: false });
-    expect(onStop).toBeCalled();
+    expect(onStop).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 1,
+      time: 10000,
+    });
+    component.setProps({ active: true });
+    expect(onStart).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0,
+      time: 0,
+    });
+
+    component.unmount();
+  });
+
+  test('active prop changed - before timer complete', () => {
+    expect.assertions(4);
+
+    const onStart = jest.fn();
+    const onStop = jest.fn();
+    const onTimeUpdate = jest.fn();
+
+    component = mount((
+      <Timer
+        active
+        onStart={onStart}
+        onStop={onStop}
+        onTimeUpdate={onTimeUpdate}
+      />
+    ), {
+      attachTo: document.getElementById('root'),
+    });
+
+    expect(onStart).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0,
+      time: 0,
+    });
+    clock.tick(2000);
+    expect(onTimeUpdate).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0.2,
+      time: 2000,
+    });
+    component.setProps({ active: false });
+    expect(onStop).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0.2,
+      time: 2000,
+    });
+    component.setProps({ active: true });
+    expect(onStart).toHaveBeenLastCalledWith({
+      duration: 10000,
+      progress: 0.2,
+      time: 2000,
+    });
 
     component.unmount();
   });
