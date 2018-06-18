@@ -41,6 +41,7 @@
     "react": ">=15"
   },
   "dependencies": {
+    "clean-react-props": "^0.2.4",
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
@@ -53,7 +54,6 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "clean-react-props": "^0.2.1",
     "coveralls": "^3.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
