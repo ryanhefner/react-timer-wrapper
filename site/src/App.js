@@ -232,7 +232,15 @@ render() {
                 <div className="percent-wrapper" data-percent={`${Math.round(timerProgress.loop.progress * 100)}%`}>
                   <p className="percent">{`${Math.round(timerProgress.loop.progress * 100)}%`}</p>
                   <div className="percent-bar" style={{width: `${timerProgress.loop.progress * 100}%`}} />
-                  <p className="percent white" style={{clipPath: `inset(0 ${(1 - timerProgress.loop.progress) * 100}% 0 0)`}}>{`${Math.round(timerProgress.loop.progress * 100)}%`}</p>
+                  <p
+                    className="percent white"
+                    style={{
+                      clipPath: `inset(0 ${(1 - timerProgress.loop.progress) * 100}% 0 0)`,
+                      webkitClipPath: `inset(0 ${(1 - timerProgress.loop.progress) * 100}% 0 0)`,
+                    }}
+                  >
+                    {`${Math.round(timerProgress.loop.progress * 100)}%`}
+                  </p>
                 </div>
               </ScrollTrigger>
               <div className="content">
