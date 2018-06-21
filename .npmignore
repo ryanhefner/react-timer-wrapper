@@ -1,4 +1,6 @@
 coverage
+docs
+site
 tools
 src/.babelrc
 src/index.test.js
