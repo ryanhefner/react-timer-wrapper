@@ -2,6 +2,7 @@
   "name": "site",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ryanhefner.github.io/react-timer-wrapper",
   "dependencies": {
     "luxon": "^1.3.0",
     "moment-timezone": "^0.5.20",
