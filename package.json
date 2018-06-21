@@ -3,8 +3,12 @@
   "version": "0.3.2",
   "license": "MIT",
   "description": "Composable React Timer component that passes its status to its children.",
-  "repository": "ryanhefner/react-timer-wrapper",
   "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
+  "repository": "ryanhefner/react-timer-wrapper",
+  "homepage": "https://ryanhefner.github.io/react-timer-wrapper",
+  "bugs": {
+    "url": "https://github.com/ryanhefner/react-timer-wrapper/issues"
+  },
   "keywords": [
     "react",
     "react-component",

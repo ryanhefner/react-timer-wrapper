@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "react-timer-wrapper",
+  "name": "react-timer-wrapper",
   "icons": [
     {
       "src": "favicon.ico",
