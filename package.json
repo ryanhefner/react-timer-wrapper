@@ -35,7 +35,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "node ./tools/build.js",
     "push-release": "git push origin master && git push --tags",
-    "test": "jest"
+    "test": "jest src/index"
   },
   "peerDependencies": {
     "react": ">=15"

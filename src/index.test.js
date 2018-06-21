@@ -118,7 +118,7 @@ describe('<Timer />', () => {
 
     expect(onStart).toHaveBeenCalledWith({
       duration: null,
-      progress: null,
+      progress: 0,
       time: 0,
     });
 
@@ -135,7 +135,7 @@ describe('<Timer />', () => {
     });
 
     expect(onFinish).not.toBeCalled();
-    clock.tick(115);
+    clock.tick(112);
     expect(onFinish).toBeCalled();
 
     component.unmount();
@@ -190,7 +190,7 @@ describe('<Timer />', () => {
     clock.tick(96);
     expect(onTimeUpdate).toHaveBeenLastCalledWith({
       duration: null,
-      progress: null,
+      progress: 0,
       time: 96,
     });
 
