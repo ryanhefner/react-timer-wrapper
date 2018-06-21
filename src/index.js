@@ -28,8 +28,6 @@ class TimerWrapper extends Component {
     } = this.props;
 
     if (active) {
-      const progress = Math.max(0, Math.min(1, time / duration));
-
       onStart({
         duration,
         progress: this.getProgress(time),
@@ -49,7 +47,7 @@ class TimerWrapper extends Component {
       onStop,
     } = nextProps;
 
-    if (active === this.props.active && time !== this.state.time) {
+    if (active === this.props.active && time !== this.props.time && time !== this.state.time) {
       const timeDiff = this.state.time - time;
 
       this.setState({
@@ -103,7 +101,7 @@ class TimerWrapper extends Component {
     } = this.state;
 
     if (!duration) {
-      return null;
+      return 0;
     }
 
     return Math.max(0, Math.min(1, time / duration));
@@ -125,15 +123,15 @@ class TimerWrapper extends Component {
 
     let nextTime = Date.now() - startTime;
 
-    onTimeUpdate({
-      duration,
-      progress: this.getProgress(nextTime),
-      time: nextTime,
-    });
-
     this.setState({
       time: nextTime,
     }, () => {
+      onTimeUpdate({
+        duration,
+        progress: this.getProgress(nextTime),
+        time: nextTime,
+      });
+
       if (duration !== null && nextTime >= duration) {
         onFinish({
           duration,
