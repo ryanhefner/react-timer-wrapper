@@ -74,7 +74,9 @@ code {
 .site-header-ctas {
   display: none;
   height: 2.8rem; }
-  .site-header-ctas iframe + iframe {
+  .site-header-ctas > * {
+    display: inline-block; }
+  .site-header-ctas * + * {
     margin-left: 1rem; }
 
 .page-wrapper {
@@ -211,7 +213,10 @@ code {
     font-size: 1.6rem; }
   .site-footer a {
     color: var(--color-white); }
+  .site-footer .follow-buttons > * {
+    display: inline-block; }
   .site-footer .follow-buttons * + * {
+    height: 2rem;
     margin-left: 1.5rem; }
 
 @media all and (min-width: 768px) {

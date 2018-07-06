@@ -95,7 +95,11 @@ code {
   display: none;
   height: 2.8rem;
 
-  iframe + iframe {
+  & > * {
+    display: inline-block;
+  }
+
+  * + * {
     margin-left: 1rem;
   }
 }
@@ -296,7 +300,12 @@ code {
   }
 
   .follow-buttons {
+    & > * {
+      display: inline-block;
+    }
+
     * + * {
+      height: 2rem;
       margin-left: 1.5rem;
     }
   }
