@@ -1,6 +1,6 @@
 {
   "name": "react-timer-wrapper",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "license": "MIT",
   "description": "Composable React Timer component that passes its status to its children.",
   "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
