@@ -40,11 +40,16 @@ class App extends Component {
       activeSection: '#examples',
       activeTimers: {
         loop: false,
-        timecode: false,
+        timecodeUp: false,
+        timecodeDown: false,
       },
       dates: this.getClockDates(),
       scrollTarget: null,
       timerProgress: {
+        countdown: {
+          time: 0,
+          duration: 0,
+        },
         loop: {
           progress: 0.3
         },
@@ -182,14 +187,14 @@ class App extends Component {
             </div>
             <div className="example example-timecode">
               <div className="content">
-                <h4>Timer w/ Timecode</h4>
+                <h4>Timer w/ Timecode (count up)</h4>
                 <ScrollTrigger
                   className="example-blocks"
-                  onEnter={this.onScrollTriggerEnterViewport.bind(this, 'timecode')}
-                  onExit={this.onScrollTriggerExitViewport.bind(this, 'timecode')}
+                  onEnter={this.onScrollTriggerEnterViewport.bind(this, 'timecodeUp')}
+                  onExit={this.onScrollTriggerExitViewport.bind(this, 'timecodeUp')}
                 >
                   <Timer
-                    active={activeTimers.timecode}
+                    active={activeTimers.timecodeUp}
                     duration={null}
                   >
                     <Timecode className="timecode" component="p" />
@@ -208,6 +213,54 @@ render() {
     <Timer active duration={null}>
       <Timecode />
     </Timer>
+  );
+}
+                    `}
+                  </code>
+                </pre>
+              </div>
+            </div>
+            <div className="example example-timecode">
+              <div className="content">
+                <h4>Timer w/ Timecode (count down)</h4>
+                <ScrollTrigger
+                  className="example-blocks"
+                  onEnter={this.onScrollTriggerEnterViewport.bind(this, 'timecodeDown')}
+                  onExit={this.onScrollTriggerExitViewport.bind(this, 'timecodeDown')}
+                >
+                  <Timer
+                    active={activeTimers.timecodeDown}
+                    duration={45 * 60 * 1000}
+                    onTimeUpdate={this.onTimerUpdate.bind(this, 'countdown')}
+                  />
+                  <Timecode className="timecode" component="p" time={timerProgress.countdown.duration - timerProgress.countdown.time} />
+                </ScrollTrigger>
+                <pre>
+                  <code>
+                    {`
+import Timer from 'react-timer-wrapper';
+import Timecode from 'react-timecode';
+
+...
+
+onTimerUpdate({time, duration}) {
+  this.setState({
+    time,
+    duration,
+  });
+}
+
+render() {
+  const {
+    time,
+    duration,
+  } = this.state;
+
+  return (
+    <div>
+      <Timer active duration={45 * 60 * 1000} onTimeUpdate={this.onTimerUpdate} />
+      <Timecode time={duration - time} />
+    </div>
   );
 }
                     `}
@@ -236,7 +289,7 @@ render() {
                     className="percent white"
                     style={{
                       clipPath: `inset(0 ${(1 - timerProgress.loop.progress) * 100}% 0 0)`,
-                      webkitClipPath: `inset(0 ${(1 - timerProgress.loop.progress) * 100}% 0 0)`,
+                      WebkitClipPath: `inset(0 ${(1 - timerProgress.loop.progress) * 100}% 0 0)`,
                     }}
                   >
                     {`${Math.round(timerProgress.loop.progress * 100)}%`}
