@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/l/express.svg)](LICENSE)
 [![Coverage Status](https://coveralls.io/repos/github/ryanhefner/react-timer-wrapper/badge.svg?branch=master)](https://coveralls.io/github/ryanhefner/react-timer-wrapper?branch=master)
 [![CircleCI](https://circleci.com/gh/ryanhefner/react-timer-wrapper.svg?style=shield)](https://circleci.com/gh/ryanhefner/react-timer-wrapper)
-[![Greenkeeper badge](https://badges.greenkeeper.io/ryanhefner/react-timer-wrapper.svg)](https://greenkeeper.io/)
+
 
 Composable React Timer component that passes status props to children, in addition
 to some basic callbacks. Can be used at a countdown timer ⏲ or as stopwatch ⏱ to track
