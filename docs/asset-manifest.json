@@ -1,6 +1,22 @@
 {
-  "main.css": "static/css/main.206b53c7.css",
-  "main.css.map": "static/css/main.206b53c7.css.map",
-  "main.js": "static/js/main.83b01afe.js",
-  "main.js.map": "static/js/main.83b01afe.js.map"
+  "files": {
+    "main.css": "/react-timer-wrapper/static/css/main.cfe9b40d.chunk.css",
+    "main.js": "/react-timer-wrapper/static/js/main.9aabdf35.chunk.js",
+    "main.js.map": "/react-timer-wrapper/static/js/main.9aabdf35.chunk.js.map",
+    "runtime-main.js": "/react-timer-wrapper/static/js/runtime-main.5596ca90.js",
+    "runtime-main.js.map": "/react-timer-wrapper/static/js/runtime-main.5596ca90.js.map",
+    "static/js/2.7c48a686.chunk.js": "/react-timer-wrapper/static/js/2.7c48a686.chunk.js",
+    "static/js/2.7c48a686.chunk.js.map": "/react-timer-wrapper/static/js/2.7c48a686.chunk.js.map",
+    "index.html": "/react-timer-wrapper/index.html",
+    "precache-manifest.1fccc5b6571b69843896b7fb91164e75.js": "/react-timer-wrapper/precache-manifest.1fccc5b6571b69843896b7fb91164e75.js",
+    "service-worker.js": "/react-timer-wrapper/service-worker.js",
+    "static/css/main.cfe9b40d.chunk.css.map": "/react-timer-wrapper/static/css/main.cfe9b40d.chunk.css.map",
+    "static/js/2.7c48a686.chunk.js.LICENSE.txt": "/react-timer-wrapper/static/js/2.7c48a686.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5596ca90.js",
+    "static/js/2.7c48a686.chunk.js",
+    "static/css/main.cfe9b40d.chunk.css",
+    "static/js/main.9aabdf35.chunk.js"
+  ]
 }
