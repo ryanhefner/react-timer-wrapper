@@ -1,9 +1,10 @@
 # ⏳ react-timer-wrapper
 
-[![npm version](https://badge.fury.io/js/react-timer-wrapper.svg)](https://badge.fury.io/js/clean-react-props)
-[![npm](https://img.shields.io/npm/l/express.svg)](LICENSE)
-[![Coverage Status](https://coveralls.io/repos/github/ryanhefner/react-timer-wrapper/badge.svg?branch=master)](https://coveralls.io/github/ryanhefner/react-timer-wrapper?branch=master)
-[![CircleCI](https://circleci.com/gh/ryanhefner/react-timer-wrapper.svg?style=shield)](https://circleci.com/gh/ryanhefner/react-timer-wrapper)
+![npm](https://img.shields.io/npm/v/react-timer-wrapper?style=flat-square)
+![NPM](https://img.shields.io/npm/l/react-timer-wrapper?style=flat-square)
+![Coveralls github](https://img.shields.io/coveralls/github/ryanhefner/react-timer-wrapper?style=flat-square)
+![CircleCI](https://img.shields.io/circleci/build/github/ryanhefner/react-timer-wrapper?style=flat-square)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ryanhefner/react-timer-wrapper?style=flat-square)
 
 
 Composable React Timer component that passes status props to children, in addition
