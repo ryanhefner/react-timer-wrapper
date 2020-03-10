@@ -11,7 +11,7 @@
     "react-dom": "^16.4.1",
     "react-hash-handler": "^0.1.2",
     "react-indicators": "^0.3.6",
-    "react-scripts": "1.1.4",
+    "react-scripts": "3.0.0",
     "react-scroll-trigger": "^0.3.3",
     "react-target-scroller": "^0.1.3",
     "react-timecode": "^1.1.3",
