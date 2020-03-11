@@ -2,6 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/react-timer-wrapper?style=flat-square)
 ![NPM](https://img.shields.io/npm/l/react-timer-wrapper?style=flat-square)
+![npm](https://img.shields.io/npm/dt/react-timer-wrapper?style=flat-square)
 ![Coveralls github](https://img.shields.io/coveralls/github/ryanhefner/react-timer-wrapper?style=flat-square)
 ![CircleCI](https://img.shields.io/circleci/build/github/ryanhefner/react-timer-wrapper?style=flat-square)
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ryanhefner/react-timer-wrapper?style=flat-square)
