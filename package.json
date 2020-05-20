@@ -9,6 +9,10 @@
   "bugs": {
     "url": "https://github.com/ryanhefner/react-timer-wrapper/issues"
   },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ryanhefner"
+  },
   "keywords": [
     "react",
     "react-component",
