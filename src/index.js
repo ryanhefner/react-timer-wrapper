@@ -38,16 +38,16 @@ class TimerWrapper extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const {
       active,
       duration,
       time,
       onStart,
       onStop,
-    } = nextProps;
+    } = this.props;
 
-    if (active === this.props.active && time !== this.props.time && time !== this.state.time) {
+    if (prevProps.active === active && prevProps.time !== time && time !== this.state.time) {
       const timeDiff = this.state.time - time;
 
       this.setState({
@@ -57,7 +57,7 @@ class TimerWrapper extends Component {
       return;
     }
 
-    if (active !== this.props.active) {
+    if (prevProps.active !== active) {
       switch (active) {
         case true:
           const nextTime = duration !== null && this.state.time >= duration
