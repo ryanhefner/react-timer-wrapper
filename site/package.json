@@ -15,7 +15,7 @@
     "react-scroll-trigger": "^0.6.3",
     "react-target-scroller": "^0.1.14",
     "react-timecode": "^1.1.22",
-    "snyk": "^1.323.1",
+    "snyk": "^1.425.4",
     "tweenkle": "^0.2.2"
   },
   "scripts": {
